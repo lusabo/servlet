@@ -2,7 +2,6 @@ package persistence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.inject.Inject;
 
@@ -45,5 +44,5 @@ public class DDL {
 		pstmt.execute();
 		pstmt.close();
 	}
-	
+
 }

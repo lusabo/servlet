@@ -16,15 +16,14 @@ public class DDL {
 	@Startup
 	@Transactional
 	public void dropAndCreate() throws Exception {
-		dropTableIfExists("bookmarks");
+		dropTableBookmark();
 		createTableBookmarks();
 	}
 
-	private void dropTableIfExists(String tableName) throws Exception {
+	private void dropTableBookmark() throws Exception {
 		PreparedStatement pstmt;
 
-		pstmt = connection.prepareStatement("DROP TABLE ? IF EXISTS");
-		pstmt.setString(1, tableName);
+		pstmt = connection.prepareStatement("DROP TABLE bookmarks IF EXISTS");
 
 		pstmt.execute();
 		pstmt.close();

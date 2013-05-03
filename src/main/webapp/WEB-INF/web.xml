@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<listener>
+		<listener-class>br.gov.frameworkdemoiselle.util.ServletListener</listener-class>
+	</listener>
+	
+	<!--  Definido pois precisa-se desse filtro antes do filtro do Resteasy -->
+	<filter>
+		<filter-name>Demoiselle Servlet Filter</filter-name>
+		<filter-class>br.gov.frameworkdemoiselle.util.ServletFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Demoiselle Servlet Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- RESTEasy as a servlet Filter -->
+	<filter>
+		<filter-name>Resteasy Filter</filter-name>
+		<filter-class>org.jboss.resteasy.plugins.server.servlet.FilterDispatcher</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Resteasy Filter</filter-name>
+		<url-pattern>/api/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Used because the url-pattern for the Resteasy servlet-mapping is not /* -->
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/api</param-value>
+	</context-param>
+	
+	<!-- Automatically scan WEB-INF/lib jars and WEB-INF/classes directory for both @Provider and JAX-RS resource classes (@Path, @GET, @POST etc..) and register them -->
+	<context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+</web-app>

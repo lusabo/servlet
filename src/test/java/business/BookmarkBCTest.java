@@ -7,8 +7,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +22,12 @@ public class BookmarkBCTest {
 	private BookmarkBC bookmarkBC;
 
 	@Before
-	public void before() throws Exception{
+	public void before() throws Exception {
 		for (Bookmark bookmark : bookmarkBC.findAll()) {
 			bookmarkBC.delete(bookmark.getId());
 		}
 	}
 
-	/*
 	@Test
 	public void testLoad() {
 		try {
@@ -44,43 +42,55 @@ public class BookmarkBCTest {
 
 	@Test
 	public void testInsert() {
-		Bookmark bookmark = new Bookmark("Demoiselle Portal", "http://www.frameworkdemoiselle.gov.br");
-		bookmarkBC.insert(bookmark);
-		List<Bookmark> listaBookmarks = bookmarkBC.findAll();
-		assertNotNull(listaBookmarks);
-		assertEquals(1, listaBookmarks.size());
+		try {
+			Bookmark bookmark = new Bookmark("Demoiselle Portal", "http://www.frameworkdemoiselle.gov.br");
+			bookmarkBC.insert(bookmark);
+			List<Bookmark> listaBookmarks = bookmarkBC.findAll();
+			assertNotNull(listaBookmarks);
+			assertEquals(1, listaBookmarks.size());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
 	}
-
-	@Test
-	public void testDelete() {
-		Bookmark bookmark = new Bookmark("Demoiselle Portal", "http://www.frameworkdemoiselle.gov.br");
-		bookmarkBC.insert(bookmark);
-
-		List<Bookmark> listaBookmarks = bookmarkBC.findAll();
-		assertNotNull(listaBookmarks);
-		assertEquals(1, listaBookmarks.size());
-
-		bookmarkBC.delete(bookmark.getId());
-		listaBookmarks = bookmarkBC.findAll();
-		assertEquals(0, listaBookmarks.size());
-	}
-
-	@Test
-	public void testUpdate() {
-		Bookmark bookmark = new Bookmark("Demoiselle Portal", "http://www.frameworkdemoiselle.gov.br");
-		bookmarkBC.insert(bookmark);
-
-		List<Bookmark> listaBookmarks = bookmarkBC.findAll();
-		Bookmark bookmark2 = (Bookmark) listaBookmarks.get(0);
-		assertNotNull(listaBookmarks);
-		assertEquals("Demoiselle Portal", bookmark2.getDescription());
-
-		bookmark2.setDescription("Demoiselle Portal alterado");
-		bookmarkBC.update(bookmark2);
-
-		listaBookmarks = bookmarkBC.findAll();
-		Bookmark bookmark3 = (Bookmark) listaBookmarks.get(0);
-		assertEquals("Demoiselle Portal alterado", bookmark3.getDescription());
-	}
-	*/
+	
+	 @Test
+	 public void testDelete() {
+		 try {
+			 Bookmark bookmark = new Bookmark("Demoiselle Portal", "http://www.frameworkdemoiselle.gov.br");
+			 bookmarkBC.insert(bookmark);
+			 
+			 List<Bookmark> listaBookmarks = bookmarkBC.findAll();
+			 assertNotNull(listaBookmarks);
+			 assertEquals(1, listaBookmarks.size());
+			 
+			 bookmarkBC.delete(listaBookmarks.get(0).getId());
+			 listaBookmarks = bookmarkBC.findAll();
+			 assertEquals(0, listaBookmarks.size());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	 }
+	
+	 @Test
+	 public void testUpdate() {
+		 try {
+			 Bookmark bookmark = new Bookmark("Demoiselle Portal", "http://www.frameworkdemoiselle.gov.br");
+			 bookmarkBC.insert(bookmark);
+			 
+			 List<Bookmark> listaBookmarks = bookmarkBC.findAll();
+			 Bookmark bookmark2 = (Bookmark) listaBookmarks.get(0);
+			 assertNotNull(listaBookmarks);
+			 assertEquals("Demoiselle Portal", bookmark2.getDescription());
+			 
+			 bookmark2.setDescription("Demoiselle Portal alterado");
+			 bookmarkBC.update(bookmark2);
+			 
+			 listaBookmarks = bookmarkBC.findAll();
+			 Bookmark bookmark3 = (Bookmark) listaBookmarks.get(0);
+			 assertEquals("Demoiselle Portal alterado", bookmark3.getDescription());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	 }
+	
 }

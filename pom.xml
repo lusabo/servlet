@@ -49,6 +49,12 @@
 			<artifactId>demoiselle-jdbc</artifactId>
 			<scope>compile</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.tuckey</groupId>
+			<artifactId>urlrewritefilter</artifactId>
+			<version>4.0.3</version>
+		</dependency>		
 
 		<dependency>
 			<groupId>org.jboss.spec.javax.ws.rs</groupId>

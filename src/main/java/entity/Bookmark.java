@@ -2,6 +2,9 @@ package entity;
 
 import java.io.Serializable;
 
+import org.codehaus.jackson.annotate.JsonPropertyOrder;
+
+@JsonPropertyOrder({ "id", "description", "link" })
 public class Bookmark implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -47,7 +47,7 @@ public class BookmarkService {
 	}
 
 	@DELETE
-	@Consumes("application/json;charset=UTF-8")
+	@Path("/{id}")
 	public void delete(@PathParam("id") Long id) throws Exception {
 		bookmarkBC.delete(id);
 	}

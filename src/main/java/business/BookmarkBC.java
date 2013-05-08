@@ -53,6 +53,12 @@ public class BookmarkBC {
 			insert(new Bookmark("SVN", "http://svn.frameworkdemoiselle.gov.br"));
 			insert(new Bookmark("Maven", "http://repository.frameworkdemoiselle.gov.br"));
 			insert(new Bookmark("Downloads", "http://download.frameworkdemoiselle.gov.br"));
+			
+			insert(new Bookmark("Uol", "http://www.uol.com.br"));
+			insert(new Bookmark("Terra", "http://www.terra.com.br"));
+			insert(new Bookmark("G1", "http://www.g1.com.br"));
+			insert(new Bookmark("Globo", "http://www.globo.com.br"));
+			
 		}
 	}
 

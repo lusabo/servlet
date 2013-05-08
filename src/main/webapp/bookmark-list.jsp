@@ -7,11 +7,11 @@
 <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
 <link href="css/DT_bootstrap.css" rel="stylesheet" type="text/css">
 
-<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="js/DT_bootstrap.js" type="text/javascript"></script>
+<script src="js/lib/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="js/lib/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/lib/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="js/lib/DT_bootstrap.js" type="text/javascript"></script>
 <script>
 	function drawTable(data){
 		var oTable = $('#table-bookmarks').dataTable({

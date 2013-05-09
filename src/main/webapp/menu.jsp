@@ -7,7 +7,7 @@
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"> Bookmarks <b class="caret"></b> </a>
 					<ul class="dropdown-menu">
 						<li><a href="bookmark-list">Lista</a></li>
-						<li><a href="bookmark-edit">Novo</a></li>
+						<li><a href="bookmark-new">Novo</a></li>
 					</ul>
 				<li>
 				<li><a href="http://www.frameworkdemoiselle.gov.br/">Sair</a></li>

@@ -12,7 +12,11 @@
 <script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/lib/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="js/lib/DT_bootstrap.js" type="text/javascript"></script>
+<script src="js/lib/persistence-service.js" type="text/javascript" ></script>
+
 <script>
+	var persistenceService = new PersistenceService("api");
+
 	function drawTable(data){
 		var oTable = $('#table-bookmarks').dataTable({
 			"bRetrieve": true,
@@ -24,12 +28,16 @@
 											"mData" : "id", 
 											"bSortable" : false,
 											"mRender" : function ( data ) {
-													return '<input type="checkbox" id="del-' + data + '" name="del-' + data + '" value="' + data + '"/>';
+													return '<a href="#" class="remove" id="' + data + '" ><i class="icon-trash"></i></a>';
 											}
  										},    	          	
-    	              { "aTargets" : [1], "mData" : "id", "sTitle" : "ID"  },
-    	              { "aTargets" : [2], "mData" : "description", "sTitle" : "DESCRIÇÃO"  },
-    	              { "aTargets" : [3], "mData" : "link", "sTitle" : "LINK"  }
+    	              { "aTargets" : [1], "mData" : "id", "sTitle" : "Id",
+ 						    	    "mRender" : function ( data ) {
+ 	 						    	    return '<a href="bookmark-edit/' + data + '">' + data + '</a>';
+ 	 						    	  }
+ 	 	 						    },
+    	              { "aTargets" : [2], "mData" : "description", "sTitle" : "Descrição"  },
+    	              { "aTargets" : [3], "mData" : "link", "sTitle" : "Link"  }
     	          	 ],
 			"sPaginationType": "bootstrap",
 			"oLanguage" : {
@@ -45,50 +53,26 @@
 			"sDom": '<"H"<"toolbar">r>t<"F"ip>'
 		});
 		
-		$("div.toolbar").replaceWith('<div id="toolbar" class="well well-small btn-toolbar"><button id="new"><i class="icon-file"></i></button><button id="delete"><i class="icon-trash"></i></button></div>');
-		$("#new").on("click", function(e){ _new('bookmark-edit'); });
-		$("#delete").on("click", function(e){ $( "#dialog-delete" ).dialog( "open" ); });		
+		$("div.toolbar").replaceWith('<div id="toolbar" class="well well-small btn-toolbar"><button id="new"><i class="icon-file"></i></button>');
+		$("#new").on("click", function(e){ _new('bookmark-new'); });
 	 	oTable.fnClearTable();
 		oTable.fnAddData(data);
-	}
-
-
-	function _initTable(){
-		$.ajax({
-			  dataType: "json",
-			  url: "api/bookmarks",
-			  success: function(data){
-				  drawTable(data);
-				}
-		});
 	}
 	
 	function _new(_destination){
 		location.href = _destination;
 	}
 
-	function _delete(){
-		$(":checked").each(function( index ){
-			var _id = this.value;
-			$.ajax({
-				type: "DELETE",
-				url: "api/bookmarks/" + _id,
-				success: function(data){
-					console.log(_id + " removido com sucesso.");
-				}
-			});
-		});
-		_initTable();
-	}
-	
-	$(function(){
-		
-		$( "#dialog-delete" ).dialog({
-			autoOpen: false,
+	function _remove(_id){
+		$( "#dialog-delete" ).dialog("open").dialog({
 			buttons: [ 
 						{ text: "Sim, claro!", 
 							click: 	function() {
-								_delete();
+								$.when(
+										persistenceService.remove("bookmark", _id) 
+								).done(function(){
+										persistenceService.all("bookmark", drawTable);	
+								});
 								$( this ).dialog( "close" ); 
 							} 
 						},
@@ -103,9 +87,18 @@
 		  modal: true,
 			title: 'Alerta!'
 		});
-		
-		_initTable();
+	}
 
+	$(function(){
+		$( "#dialog-delete" ).dialog({autoOpen: false});
+		
+		persistenceService.all("bookmark", drawTable);
+
+		$("#table-bookmarks").delegate("a.remove", "click", function () {
+			_remove(this.id);
+	  });	
+
+		
 	});
 </script>
 <style>

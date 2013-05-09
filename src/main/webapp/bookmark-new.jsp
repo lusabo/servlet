@@ -12,6 +12,19 @@
 $(function(){
 	var persistenceService = new PersistenceService("api");
 	
+	$("#salvar").click(function(){
+		
+		var bookmark = new Bookmark();
+		bookmark.description = $("#description").val();
+		bookmark.link = $("#link").val();
+
+		$.when(
+				persistenceService.create("bookmark", bookmark) 
+		).done(function(){
+			location.href = "bookmark-list";
+		});
+		
+	});	
 });	
 </script>
 <style>
@@ -22,6 +35,7 @@ body {
 </style>
 
 </head>
+
 <body>
 
 	<jsp:include page="menu.jsp" />
@@ -29,10 +43,7 @@ body {
 		<fieldset>
 			<legend>Bookmark</legend>
 			<div class="control-group">
-				<label class="control-label">ID</label>
-			</div>			
-			<div class="control-group">
-				<label class="control-label" for="description">Description</label>
+				<label class="control-label" for="description">Descrição</label>
 				<div class="controls">
 					<input type="text" id="description">
 				</div>
@@ -45,10 +56,11 @@ body {
 			</div>
 			<div class="control-group">
 				<div class="controls">
-					<button type="submit" class="btn">Salvar</button>
+					<button id="salvar" type="button" class="btn">Salvar</button>
 				</div>
 			</div>
-		</fieldset>			
+		</fieldset>
 	</form>
+
 </body>
 </html>

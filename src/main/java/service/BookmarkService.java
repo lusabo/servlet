@@ -15,7 +15,7 @@ import javax.ws.rs.Produces;
 import business.BookmarkBC;
 import entity.Bookmark;
 
-@Path("/bookmarks")
+@Path("/bookmark")
 public class BookmarkService {
 
 	@Inject

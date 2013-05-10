@@ -4,11 +4,11 @@
     "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
 <urlrewrite>
 
-	<rule>
+	<!-- <rule>
 		<from>(.+)\.html</from>
 		<set type="status">404</set>
 		<to>null</to>
-	</rule>
+	</rule> -->
 
 	<rule>
 		<from>^/home$</from>

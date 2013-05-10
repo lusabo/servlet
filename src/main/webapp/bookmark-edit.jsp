@@ -53,7 +53,7 @@ body {
 					<button type="submit" class="btn">Salvar</button>
 				</div>
 			</div>
-		</fieldset>			
+		</fieldset>
 	</form>
 </body>
 </html>

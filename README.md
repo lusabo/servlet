@@ -99,5 +99,6 @@ Adicionar as seguintes dependências:
 
 
 ###4. Adicionado interface utilizando Angular.js(Single Page Application) consumindo a mesma api restful
-# - /angular.html
+<br/>
+ - /angular.html
 <br/>

@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Bookmark - Demoiselle</title>
+<base href="http://localhost:8080/servlet/bookmark-list">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
@@ -28,16 +29,20 @@
 											"mData" : "id", 
 											"bSortable" : false,
 											"mRender" : function ( data ) {
-													return '<a href="#" class="remove" id="' + data + '" ><i class="icon-trash"></i></a>';
+													return '<a href="#" class="remove" id="' + data + '" title="Apagar registro!" ><i class="icon-trash"></i></a>';
 											}
- 										},    	          	
-    	              { "aTargets" : [1], "mData" : "id", "sTitle" : "Id",
- 						    	    "mRender" : function ( data ) {
- 	 						    	    return '<a href="bookmark-edit/' + data + '">' + data + '</a>';
- 	 						    	  }
- 	 	 						    },
-    	              { "aTargets" : [2], "mData" : "description", "sTitle" : "Descrição"  },
-    	              { "aTargets" : [3], "mData" : "link", "sTitle" : "Link"  }
+ 										},
+ 										{ "aTargets" : [1], 
+											"sWidth" : "20px",
+											"mData" : "id", 
+											"bSortable" : false,
+											"mRender" : function ( data ) {
+													return '<a href="bookmark-edit/' + data + '" title="Editar registro!" ><i class="icon-edit"></i></a>';
+											}
+ 										}, 										
+    	              { "aTargets" : [2], "mData" : "id", "sTitle" : "Id" },
+    	              { "aTargets" : [3], "mData" : "description", "sTitle" : "Descrição" },
+    	              { "aTargets" : [4], "mData" : "link", "sTitle" : "Link" }
     	          	 ],
 			"sPaginationType": "bootstrap",
 			"oLanguage" : {

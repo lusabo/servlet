@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Bookmark - Demoiselle</title>
+<base href="http://localhost:8080/servlet/bookmark-new">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <script src="js/lib/jquery-1.9.1.min.js" type="text/javascript"></script>

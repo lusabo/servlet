@@ -21,7 +21,7 @@ PersistenceService.prototype.create = function(type, data, callback) {
 PersistenceService.prototype.update = function(type, data, callback) {
 	return $.ajax({
 		type : "PUT",
-		url : this.url + "/" + type + "/" + data.id,
+		url : this.url + "/" + type,
 		data : JSON.stringify(data),
 		contentType : "application/json;charset=utf8",
 		dataType : "json",

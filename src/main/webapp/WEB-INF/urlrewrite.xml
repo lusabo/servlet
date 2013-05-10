@@ -25,27 +25,21 @@
 		<from>^/bookmark-new$</from>
 		<to>/bookmark-new.jsp</to>
 	</rule>
-
-	<!-- 
-	http://urlrewritefilter.googlecode.com/svn/trunk/src/doc/manual/4.0/guide.html
-	<rule>
-		<from>^/products/([0-9]+)$</from>
-		<to>/products/index.jsp?product_id=$1</to>
-	</rule>
-	-->
 	
 	<rule>
 		<from>^/bookmark-edit/([0-9]+)$</from>
 		<to>/bookmark-edit.jsp?id=$1</to>
-	</rule>
- 
+	</rule>	
+	
 	<rule>
 		<from>^/$</from>
 		<to type="redirect">%{context-path}/home</to>
 	</rule>
+	<!-- 
 	<rule>
 		<from>^/(.+)/$</from>
 		<to type="redirect">%{context-path}/$1</to>
 	</rule>
+	 -->
 
 </urlrewrite>
